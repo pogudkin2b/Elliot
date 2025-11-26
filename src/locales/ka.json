@@ -13,7 +13,7 @@
     "subtitle": "კერძო საბავშვო ბაღი თბილისში",
     "description": "თბილი ატმოსფერო, ინდივიდუალური მიდგომა და თქვენი შვილის განვითარება კომფორტულ გარემოში",
     "cta": "ჩაეწერეთ ექსკურსიაზე",
-    "telegram": "მოგვწერეთ Telegram-ში"
+    "whatsapp": "მოგვწერეთ WhatsApp-ში"
   },
   "advantages": {
     "title": "რატომ Elliot",
@@ -137,15 +137,20 @@
     "subtitle": "მობრძანდით ექსკურსიაზე — ყველაფერს გაჩვენებთ!",
     "address": {
       "title": "მისამართი",
-      "value": "თბილისი, საქართველო"
+      "value": "40 კოსტავას ქ, Tbilisi 0179, საქართველო"
     },
     "phone": {
       "title": "ტელეფონი",
-      "value": "+995 XXX XXX XXX"
+      "value": "+995 551 50 33 23"
     },
-    "telegram": {
-      "title": "Telegram",
+    "whatsapp": {
+      "title": "WhatsApp",
       "value": "მოგვწერეთ"
+    },
+    "hours": {
+      "title": "სამუშაო საათები",
+      "weekdays": "ორშ-პარ: 08:30–19:00",
+      "weekend": "შაბ-კვი: დახურულია"
     },
     "instagram": {
       "title": "Instagram",

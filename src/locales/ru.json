@@ -13,7 +13,7 @@
     "subtitle": "Частный детский сад в Тбилиси",
     "description": "Тёплая атмосфера, индивидуальный подход и развитие вашего ребёнка в комфортной среде",
     "cta": "Записаться на экскурсию",
-    "telegram": "Написать в Telegram"
+    "whatsapp": "Написать в WhatsApp"
   },
   "advantages": {
     "title": "Почему выбирают Elliot",
@@ -137,15 +137,20 @@
     "subtitle": "Приходите на экскурсию — мы всё покажем!",
     "address": {
       "title": "Адрес",
-      "value": "Тбилиси, Грузия"
+      "value": "40 კოსტავას ქ, Tbilisi 0179, Грузия"
     },
     "phone": {
       "title": "Телефон",
-      "value": "+995 XXX XXX XXX"
+      "value": "+995 551 50 33 23"
     },
-    "telegram": {
-      "title": "Telegram",
+    "whatsapp": {
+      "title": "WhatsApp",
       "value": "Написать нам"
+    },
+    "hours": {
+      "title": "Часы работы",
+      "weekdays": "Пн-Пт: 08:30–19:00",
+      "weekend": "Сб-Вс: Закрыто"
     },
     "instagram": {
       "title": "Instagram",

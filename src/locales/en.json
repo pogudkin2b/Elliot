@@ -13,7 +13,7 @@
     "subtitle": "Private kindergarten in Tbilisi",
     "description": "Warm atmosphere, individual approach, and your child's development in a comfortable environment",
     "cta": "Book a Tour",
-    "telegram": "Message on Telegram"
+    "whatsapp": "Message on WhatsApp"
   },
   "advantages": {
     "title": "Why Choose Elliot",
@@ -137,15 +137,20 @@
     "subtitle": "Come for a tour — we'll show you everything!",
     "address": {
       "title": "Address",
-      "value": "Tbilisi, Georgia"
+      "value": "40 კოსტავას ქ, Tbilisi 0179, Georgia"
     },
     "phone": {
       "title": "Phone",
-      "value": "+995 XXX XXX XXX"
+      "value": "+995 551 50 33 23"
     },
-    "telegram": {
-      "title": "Telegram",
+    "whatsapp": {
+      "title": "WhatsApp",
       "value": "Message us"
+    },
+    "hours": {
+      "title": "Opening Hours",
+      "weekdays": "Mon-Fri: 08:30–19:00",
+      "weekend": "Sat-Sun: Closed"
     },
     "instagram": {
       "title": "Instagram",
