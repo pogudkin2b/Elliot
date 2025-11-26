@@ -115,7 +115,7 @@ export default function Contacts() {
                   {t.contacts.whatsapp.title}
                 </h3>
                 <a
-                  href="https://wa.me/995551503323"
+                  href="https://wa.me/995557776363"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-warm-gray hover:text-[#25D366] transition-colors"

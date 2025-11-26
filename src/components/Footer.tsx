@@ -49,7 +49,7 @@ export default function Footer() {
                 </svg>
               </motion.a>
               <motion.a
-                href="https://wa.me/995551503323"
+                href="https://wa.me/995557776363"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
