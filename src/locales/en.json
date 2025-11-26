@@ -1,0 +1,167 @@
+{
+  "nav": {
+    "about": "About",
+    "program": "Program",
+    "gallery": "Gallery",
+    "nutrition": "Nutrition",
+    "reviews": "Reviews",
+    "pricing": "Pricing",
+    "contacts": "Contacts"
+  },
+  "hero": {
+    "title": "Elliot Kindergarten",
+    "subtitle": "Private kindergarten in Tbilisi",
+    "description": "Warm atmosphere, individual approach, and your child's development in a comfortable environment",
+    "cta": "Book a Tour",
+    "telegram": "Message on Telegram"
+  },
+  "advantages": {
+    "title": "Why Choose Elliot",
+    "subtitle": "We've created a space where children love to learn and parents trust with peace of mind",
+    "items": {
+      "bilingual": {
+        "title": "Bilingual Groups",
+        "description": "Russian and Georgian languages in everyday communication"
+      },
+      "yard": {
+        "title": "Private Yard",
+        "description": "Safe outdoor space for walks and play"
+      },
+      "adaptation": {
+        "title": "Gentle Adaptation",
+        "description": "Smooth transition without stress for child and parents"
+      },
+      "schedule": {
+        "title": "Structured Schedule",
+        "description": "Organized day with developmental activities"
+      },
+      "themes": {
+        "title": "Themed Weeks",
+        "description": "Exciting projects and immersion into different topics"
+      },
+      "reports": {
+        "title": "Photo & Video Reports",
+        "description": "Daily sharing of kindergarten moments"
+      },
+      "meals": {
+        "title": "4-5 Meals a Day",
+        "description": "Home-cooked food considering dietary needs"
+      },
+      "community": {
+        "title": "Parent Community",
+        "description": "Friendly atmosphere and joint events"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Our Life",
+    "subtitle": "Every day is filled with joy, discoveries, and care"
+  },
+  "program": {
+    "title": "Program",
+    "subtitle": "Development through play and creativity",
+    "age": {
+      "title": "Age",
+      "value": "2 to 6 years old"
+    },
+    "included": {
+      "title": "What's Included",
+      "items": [
+        "Developmental activities",
+        "Creative workshops",
+        "Music classes",
+        "School preparation",
+        "Outdoor walks"
+      ]
+    },
+    "extra": {
+      "title": "Additional Classes",
+      "items": [
+        { "name": "Ballet", "icon": "ballet" },
+        { "name": "Karate", "icon": "karate" },
+        { "name": "Yoga", "icon": "yoga" },
+        { "name": "Swimming", "icon": "swimming" },
+        { "name": "English", "icon": "english" },
+        { "name": "Singing", "icon": "singing" }
+      ]
+    }
+  },
+  "nutrition": {
+    "title": "Nutrition",
+    "subtitle": "Delicious and healthy — like home",
+    "description": "Menu is designed according to children's age-specific needs. We cook from fresh ingredients every day.",
+    "menuUpdate": "Menu is updated weekly",
+    "downloadMenu": "Download sample menu (PDF)"
+  },
+  "reviews": {
+    "title": "Parent Reviews",
+    "subtitle": "What they say about us",
+    "items": [
+      {
+        "text": "Elliot has become a second home for our daughter. The teachers are caring and attentive, she runs to kindergarten with joy every morning!",
+        "author": "Maria K.",
+        "role": "mom of Sofia, 4 years old"
+      },
+      {
+        "text": "Excellent program, diverse activities. My son started speaking two languages and fell in love with drawing.",
+        "author": "George M.",
+        "role": "dad of David, 5 years old"
+      },
+      {
+        "text": "Gentle adaptation was very important to us, and Elliot did it perfectly. We recommend to all our friends!",
+        "author": "Anna V.",
+        "role": "mom of Misha, 3 years old"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Transparent terms with no hidden fees",
+    "price": "900",
+    "currency": "GEL/month",
+    "included": {
+      "title": "What's Included",
+      "items": [
+        "Full day (9:00 — 18:00)",
+        "4-5 meals a day",
+        "All developmental activities",
+        "Walks and games",
+        "Photo and video reports",
+        "Themed events"
+      ]
+    },
+    "note": "Additional classes (ballet, karate, swimming, etc.) are paid separately"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "Come for a tour — we'll show you everything!",
+    "address": {
+      "title": "Address",
+      "value": "Tbilisi, Georgia"
+    },
+    "phone": {
+      "title": "Phone",
+      "value": "+995 XXX XXX XXX"
+    },
+    "telegram": {
+      "title": "Telegram",
+      "value": "Message us"
+    },
+    "instagram": {
+      "title": "Instagram",
+      "value": "@kindergarten.elliot"
+    },
+    "form": {
+      "title": "Book a Tour",
+      "name": "Your name",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Send Request",
+      "success": "Thank you! We will contact you soon."
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy"
+  }
+}
