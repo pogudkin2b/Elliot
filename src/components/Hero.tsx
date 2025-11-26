@@ -197,8 +197,8 @@ export default function Hero() {
                     </svg>
                   </div>
                   <div>
-                    <div className="font-display text-3xl text-charcoal">900</div>
-                    <div className="text-sm text-warm-gray">GEL / month</div>
+                    <div className="font-display text-3xl text-charcoal">{t.pricing.price}</div>
+                    <div className="text-sm text-warm-gray">{t.pricing.currency}</div>
                   </div>
                 </div>
               </motion.div>
