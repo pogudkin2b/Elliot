@@ -8,11 +8,9 @@ export default function Nutrition() {
   const { t } = useI18n();
 
   const mealTimes = [
-    { time: '09:00', meal: 'Breakfast', icon: '🥣' },
-    { time: '10:30', meal: 'Snack', icon: '🍎' },
-    { time: '13:00', meal: 'Lunch', icon: '🍽️' },
-    { time: '15:30', meal: 'Snack', icon: '🥛' },
-    { time: '17:00', meal: 'Light dinner', icon: '🥗' },
+    { time: '9:00–9:15', meal: 'Завтрак', icon: '🥣' },
+    { time: '12:30–13:00', meal: 'Обед', icon: '🍽️' },
+    { time: '15:30–16:00', meal: 'Полдник', icon: '🥛' },
   ];
 
   return (
@@ -50,9 +48,9 @@ export default function Nutrition() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="absolute -bottom-8 -right-8 bg-cream rounded-3xl shadow-soft-lg p-6 max-w-xs border border-sand"
             >
-              <h4 className="font-display text-xl text-charcoal mb-4">4-5 meals daily</h4>
+              <h4 className="font-display text-xl text-charcoal mb-4">3 приёма пищи</h4>
               <div className="space-y-2">
-                {mealTimes.slice(0, 4).map((item, index) => (
+                {mealTimes.map((item, index) => (
                   <div key={index} className="flex items-center gap-3 text-sm">
                     <span className="text-lg">{item.icon}</span>
                     <span className="text-warm-gray w-12">{item.time}</span>
