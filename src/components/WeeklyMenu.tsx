@@ -28,6 +28,8 @@ const mealConfig = {
   }
 } as const;
 
+const dayNamesEn = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
 const dayNamesRu = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 const monthNamesRu = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
@@ -35,10 +37,40 @@ interface MealCardProps {
   mealType: 'breakfast' | 'lunch' | 'snack';
   items: Array<{ name: string; icon: string }>;
   delay: number;
+  weekNumber: number;
+  dayName: string;
 }
 
-const MealCard = ({ mealType, items, delay }: MealCardProps) => {
+const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps) => {
   const config = mealConfig[mealType];
+  const [imageError, setImageError] = useState(false);
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    // Пробуем разные форматы изображений
+    const basePath = `/images/menu/week${weekNumber}/${dayName}/${mealType}`;
+    const formats = ['webp', 'jpg', 'jpeg', 'png'];
+
+    // Пробуем загрузить первый доступный формат
+    const tryFormats = async () => {
+      for (const format of formats) {
+        const path = `${basePath}.${format}`;
+        try {
+          const response = await fetch(path, { method: 'HEAD' });
+          if (response.ok) {
+            setImageSrc(path);
+            return;
+          }
+        } catch {
+          continue;
+        }
+      }
+      // Если ни один формат не найден, показываем fallback
+      setImageError(true);
+    };
+
+    tryFormats();
+  }, [weekNumber, dayName, mealType]);
 
   return (
     <motion.div
@@ -81,20 +113,33 @@ const MealCard = ({ mealType, items, delay }: MealCardProps) => {
         </ul>
       </div>
 
-      {/* Правая часть — иллюстрация */}
-      <div className={`w-full md:w-[35%] min-h-[160px] md:min-h-[220px] flex items-center justify-center p-6 bg-gradient-to-br ${config.bgGradient}`}>
-        <div className="text-4xl md:text-5xl flex flex-wrap gap-2 justify-center items-center">
-          {config.illustration.split('').map((emoji, i) => (
-            <motion.span
-              key={i}
-              whileHover={{ scale: 1.2, rotate: 10 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="inline-block"
-            >
-              {emoji}
-            </motion.span>
-          ))}
-        </div>
+      {/* Правая часть — изображение или иллюстрация */}
+      <div className={`relative w-full md:w-[35%] min-h-[200px] md:min-h-[280px] flex items-center justify-center bg-gradient-to-br ${config.bgGradient} overflow-hidden`}>
+        {!imageError && imageSrc ? (
+          <motion.img
+            src={imageSrc}
+            alt={config.title}
+            initial={{ opacity: 0, scale: 1.1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onError={() => setImageError(true)}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="text-4xl md:text-5xl flex flex-wrap gap-2 justify-center items-center p-6">
+            {config.illustration.split('').map((emoji, i) => (
+              <motion.span
+                key={i}
+                whileHover={{ scale: 1.2, rotate: 10 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="inline-block"
+              >
+                {emoji}
+              </motion.span>
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   );
@@ -228,16 +273,22 @@ export default function WeeklyMenu() {
               mealType="breakfast"
               items={dayMenu.meals.breakfast}
               delay={0}
+              weekNumber={weekNumber}
+              dayName={dayNamesEn[dayOfWeek]}
             />
             <MealCard
               mealType="lunch"
               items={dayMenu.meals.lunch}
               delay={1}
+              weekNumber={weekNumber}
+              dayName={dayNamesEn[dayOfWeek]}
             />
             <MealCard
               mealType="snack"
               items={dayMenu.meals.snack}
               delay={2}
+              weekNumber={weekNumber}
+              dayName={dayNamesEn[dayOfWeek]}
             />
           </>
         ) : null}
