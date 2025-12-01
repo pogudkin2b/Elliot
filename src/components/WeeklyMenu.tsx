@@ -45,8 +45,14 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
   const config = mealConfig[mealType];
   const [imageError, setImageError] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Сбрасываем состояние при изменении параметров
+    setIsLoading(true);
+    setImageError(false);
+    setImageSrc('');
+
     // Пробуем разные форматы изображений
     const basePath = `/images/menu/week${weekNumber}/${dayName}/${mealType}`;
     const formats = ['webp', 'jpg', 'jpeg', 'png'];
@@ -59,6 +65,7 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
           const response = await fetch(path, { method: 'HEAD' });
           if (response.ok) {
             setImageSrc(path);
+            setIsLoading(false);
             return;
           }
         } catch {
@@ -67,6 +74,7 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
       }
       // Если ни один формат не найден, показываем fallback
       setImageError(true);
+      setIsLoading(false);
     };
 
     tryFormats();
@@ -115,7 +123,11 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
 
       {/* Правая часть — изображение или иллюстрация */}
       <div className={`relative w-full md:w-[35%] min-h-[200px] md:min-h-[280px] flex items-center justify-center bg-gradient-to-br ${config.bgGradient} overflow-hidden`}>
-        {!imageError && imageSrc ? (
+        {isLoading ? (
+          // Показываем пустое пространство во время загрузки
+          <div className="w-full h-full" />
+        ) : imageSrc ? (
+          // Показываем изображение, если оно загрузилось
           <motion.img
             src={imageSrc}
             alt={config.title}
@@ -123,10 +135,14 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            onError={() => setImageError(true)}
+            onError={() => {
+              setImageError(true);
+              setIsLoading(false);
+            }}
             className="w-full h-full object-cover"
           />
-        ) : (
+        ) : imageError ? (
+          // Показываем эмодзи только если изображение не найдено
           <div className="text-4xl md:text-5xl flex flex-wrap gap-2 justify-center items-center p-6">
             {config.illustration.split('').map((emoji, i) => (
               <motion.span
@@ -139,7 +155,7 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
               </motion.span>
             ))}
           </div>
-        )}
+        ) : null}
       </div>
     </motion.div>
   );
