@@ -114,7 +114,7 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
               transition={{ delay: delay * 0.15 + idx * 0.05 }}
               className="flex items-center gap-3 text-charcoal"
             >
-              <span className="text-xl flex-shrink-0">{item.icon}</span>
+              <span className="w-2 h-2 rounded-full bg-terracotta flex-shrink-0"></span>
               <span className="text-base md:text-lg font-medium">{item.name}</span>
             </motion.li>
           ))}
