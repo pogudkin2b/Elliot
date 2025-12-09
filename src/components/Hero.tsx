@@ -182,27 +182,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating card - Price */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.9, duration: 0.5 }}
-                whileHover={{ y: -5 }}
-                className="absolute -left-6 bottom-16 bg-cream rounded-3xl shadow-soft-lg p-5 border border-sand"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 bg-terracotta/10 rounded-2xl flex items-center justify-center">
-                    <svg className="w-7 h-7 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="font-display text-3xl text-charcoal">{t.pricing.price}</div>
-                    <div className="text-sm text-warm-gray">{t.pricing.currency}</div>
-                  </div>
-                </div>
-              </motion.div>
-
               {/* Floating card - Age */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
@@ -218,7 +197,7 @@ export default function Hero() {
                     </svg>
                   </div>
                   <div>
-                    <div className="font-display text-3xl text-charcoal">2–6</div>
+                    <div className="font-display text-3xl text-charcoal">1.6-6</div>
                     <div className="text-sm text-warm-gray">years old</div>
                   </div>
                 </div>
