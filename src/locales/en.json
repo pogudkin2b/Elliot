@@ -168,5 +168,22 @@
   "footer": {
     "rights": "All rights reserved",
     "privacy": "Privacy Policy"
+  },
+  "weeklyMenu": {
+    "meals": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "snack": "Snack"
+    },
+    "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "week": "Week",
+    "weekend": {
+      "title": "Weekend",
+      "message": "Kindergarten is closed on weekends"
+    },
+    "footer": "Menu may be adjusted"
   }
 }

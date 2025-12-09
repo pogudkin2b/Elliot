@@ -3,35 +3,33 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { menuData, getCurrentWeekNumber } from '@/data/menu';
+import { useI18n } from '@/lib/i18n';
 
-const mealConfig = {
+const getMealConfig = (mealTitle: string) => ({
   breakfast: {
-    title: 'Завтрак',
+    title: mealTitle,
     time: '9:00–9:15',
     bgGradient: 'from-peach/20 to-cream',
     badgeColor: 'bg-peach/30 text-terracotta',
     illustration: '🥣🍞☕🍎'
   },
   lunch: {
-    title: 'Обед',
+    title: mealTitle,
     time: '12:30–13:00',
     bgGradient: 'from-sage/10 to-cream',
     badgeColor: 'bg-sage/30 text-sage',
     illustration: '🍲🥗🍞🥤'
   },
   snack: {
-    title: 'Полдник',
+    title: mealTitle,
     time: '15:30–16:00',
     bgGradient: 'from-terracotta/10 to-cream',
     badgeColor: 'bg-terracotta/30 text-terracotta',
     illustration: '🍗🍝🧃🍪'
   }
-} as const;
+});
 
 const dayNamesEn = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-
-const dayNamesRu = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-const monthNamesRu = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 
 interface MealCardProps {
   mealType: 'breakfast' | 'lunch' | 'snack';
@@ -39,10 +37,11 @@ interface MealCardProps {
   delay: number;
   weekNumber: number;
   dayName: string;
+  mealTitle: string;
 }
 
-const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps) => {
-  const config = mealConfig[mealType];
+const MealCard = ({ mealType, items, delay, weekNumber, dayName, mealTitle }: MealCardProps) => {
+  const config = getMealConfig(mealTitle)[mealType];
   const [imageError, setImageError] = useState(false);
   const [imageSrc, setImageSrc] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -161,7 +160,12 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName }: MealCardProps
   );
 };
 
-const WeekendMessage = () => (
+interface WeekendMessageProps {
+  title: string;
+  message: string;
+}
+
+const WeekendMessage = ({ title, message }: WeekendMessageProps) => (
   <motion.div
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -178,15 +182,16 @@ const WeekendMessage = () => (
       </svg>
     </motion.div>
     <h3 className="font-display text-2xl md:text-3xl text-charcoal mb-3">
-      Выходной день
+      {title}
     </h3>
     <p className="text-warm-gray text-lg">
-      В выходные садик отдыхает
+      {message}
     </p>
   </motion.div>
 );
 
 export default function WeeklyMenu() {
+  const { t } = useI18n();
   const [selectedDay, setSelectedDay] = useState<'today' | 'tomorrow'>('today');
   const [currentDate, setCurrentDate] = useState(new Date());
   const [animationKey, setAnimationKey] = useState(0);
@@ -208,7 +213,7 @@ export default function WeeklyMenu() {
   const weekNumber = getCurrentWeekNumber();
   const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
 
-  const formattedDate = `${dayNamesRu[dayOfWeek]}, ${targetDate.getDate()} ${monthNamesRu[targetDate.getMonth()]}`;
+  const formattedDate = `${t.weeklyMenu.days[dayOfWeek]}, ${targetDate.getDate()} ${t.weeklyMenu.months[targetDate.getMonth()]}`;
 
   const handleDayChange = (day: 'today' | 'tomorrow') => {
     setSelectedDay(day);
@@ -238,7 +243,7 @@ export default function WeeklyMenu() {
                 : 'text-charcoal hover:bg-sand/50'
             }`}
           >
-            Сегодня
+            {t.weeklyMenu.today}
           </button>
           <button
             onClick={() => handleDayChange('tomorrow')}
@@ -248,7 +253,7 @@ export default function WeeklyMenu() {
                 : 'text-charcoal hover:bg-sand/50'
             }`}
           >
-            Завтра
+            {t.weeklyMenu.tomorrow}
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -274,7 +279,7 @@ export default function WeeklyMenu() {
         </div>
         {!isWeekend && (
           <span className="inline-block px-3 py-1 rounded-full text-sm font-medium bg-sand text-warm-gray">
-            Неделя {weekNumber}
+            {t.weeklyMenu.week} {weekNumber}
           </span>
         )}
       </motion.div>
@@ -282,7 +287,10 @@ export default function WeeklyMenu() {
       {/* Menu Cards */}
       <div key={animationKey} className="space-y-6">
         {isWeekend ? (
-          <WeekendMessage />
+          <WeekendMessage
+            title={t.weeklyMenu.weekend.title}
+            message={t.weeklyMenu.weekend.message}
+          />
         ) : dayMenu ? (
           <>
             <MealCard
@@ -291,6 +299,7 @@ export default function WeeklyMenu() {
               delay={0}
               weekNumber={weekNumber}
               dayName={dayNamesEn[dayOfWeek]}
+              mealTitle={t.weeklyMenu.meals.breakfast}
             />
             <MealCard
               mealType="lunch"
@@ -298,6 +307,7 @@ export default function WeeklyMenu() {
               delay={1}
               weekNumber={weekNumber}
               dayName={dayNamesEn[dayOfWeek]}
+              mealTitle={t.weeklyMenu.meals.lunch}
             />
             <MealCard
               mealType="snack"
@@ -305,6 +315,7 @@ export default function WeeklyMenu() {
               delay={2}
               weekNumber={weekNumber}
               dayName={dayNamesEn[dayOfWeek]}
+              mealTitle={t.weeklyMenu.meals.snack}
             />
           </>
         ) : null}
@@ -319,7 +330,7 @@ export default function WeeklyMenu() {
         className="mt-12 text-center"
       >
         <p className="text-sm text-warm-gray">
-          Меню может корректироваться
+          {t.weeklyMenu.footer}
         </p>
       </motion.div>
     </div>
