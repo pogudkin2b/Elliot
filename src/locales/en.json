@@ -4,6 +4,7 @@
     "program": "Program",
     "gallery": "Gallery",
     "nutrition": "Nutrition",
+    "news": "News",
     "reviews": "Reviews",
     "pricing": "Pricing",
     "contacts": "Contacts"
@@ -239,5 +240,19 @@
       "pea_soup_bread": "Pea Soup/Bread",
       "mashed_potatoes": "Mashed Potatoes"
     }
+  },
+  "news": {
+    "title": "News & Events",
+    "subtitle": "What's new at Elliot",
+    "viewAll": "View all events",
+    "readMore": "Read more",
+    "backToNews": "Back to news",
+    "types": {
+      "holiday": "Holiday",
+      "event": "Event",
+      "announcement": "Announcement"
+    },
+    "noEvents": "No events yet",
+    "notFound": "Event not found"
   }
 }

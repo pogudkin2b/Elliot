@@ -19,21 +19,26 @@ export default function Header() {
   }, []);
 
   const navItems = [
-    { href: '#advantages', label: t.nav.about },
-    { href: '#program', label: t.nav.program },
-    { href: '#gallery', label: t.nav.gallery },
-    { href: '#nutrition', label: t.nav.nutrition },
-    { href: '#reviews', label: t.nav.reviews },
-    { href: '#pricing', label: t.nav.pricing },
-    { href: '#contacts', label: t.nav.contacts },
+    { href: '#advantages', label: t.nav.about, isRoute: false },
+    { href: '#program', label: t.nav.program, isRoute: false },
+    { href: '#gallery', label: t.nav.gallery, isRoute: false },
+    { href: '#nutrition', label: t.nav.nutrition, isRoute: false },
+    { href: '/news', label: t.nav.news, isRoute: true },
+    { href: '#reviews', label: t.nav.reviews, isRoute: false },
+    { href: '#pricing', label: t.nav.pricing, isRoute: false },
+    { href: '#contacts', label: t.nav.contacts, isRoute: false },
   ];
 
   const locales: Locale[] = ['ru', 'en', 'ka'];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const handleNavClick = (href: string, isRoute: boolean) => {
+    if (isRoute) {
+      window.location.href = href;
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsMenuOpen(false);
   };
@@ -80,7 +85,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + index * 0.05 }}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavClick(item.href, item.isRoute)}
                 className="relative px-4 py-2 text-warm-gray hover:text-charcoal transition-colors text-sm font-medium group"
               >
                 {item.label}
@@ -196,7 +201,7 @@ export default function Header() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavClick(item.href, item.isRoute)}
                   className="block w-full text-left py-3 px-4 rounded-xl text-charcoal hover:bg-sand transition-colors font-medium"
                 >
                   {item.label}

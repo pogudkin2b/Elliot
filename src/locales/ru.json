@@ -4,6 +4,7 @@
     "program": "Программа",
     "gallery": "Галерея",
     "nutrition": "Питание",
+    "news": "Новости",
     "reviews": "Отзывы",
     "pricing": "Цены",
     "contacts": "Контакты"
@@ -239,5 +240,19 @@
       "pea_soup_bread": "Гороховый суп/Хлеб",
       "mashed_potatoes": "Картофельное пюре"
     }
+  },
+  "news": {
+    "title": "Новости и события",
+    "subtitle": "Что нового в Elliot",
+    "viewAll": "Посмотреть все события",
+    "readMore": "Читать далее",
+    "backToNews": "Вернуться к новостям",
+    "types": {
+      "holiday": "Праздник",
+      "event": "Событие",
+      "announcement": "Объявление"
+    },
+    "noEvents": "Пока нет событий",
+    "notFound": "Событие не найдено"
   }
 }
