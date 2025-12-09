@@ -8,9 +8,9 @@ export default function Nutrition() {
   const { t } = useI18n();
 
   const mealTimes = [
-    { time: '9:00–9:15', meal: 'Завтрак', icon: '🥣' },
-    { time: '12:30–13:00', meal: 'Обед', icon: '🍽️' },
-    { time: '15:30–16:00', meal: 'Полдник', icon: '🥛' },
+    { time: '9:00–9:15', meal: t.nutrition.mealNames.breakfast, icon: '🥣' },
+    { time: '12:30–13:00', meal: t.nutrition.mealNames.lunch, icon: '🍽️' },
+    { time: '15:30–16:00', meal: t.nutrition.mealNames.snack, icon: '🥛' },
   ];
 
   return (
@@ -48,7 +48,7 @@ export default function Nutrition() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="absolute -bottom-8 -right-8 bg-cream rounded-3xl shadow-soft-lg p-6 max-w-xs border border-sand"
             >
-              <h4 className="font-display text-xl text-charcoal mb-4">3 приёма пищи</h4>
+              <h4 className="font-display text-xl text-charcoal mb-4">{t.nutrition.mealsCount}</h4>
               <div className="space-y-2">
                 {mealTimes.map((item, index) => (
                   <div key={index} className="flex items-center gap-3 text-sm">
@@ -104,10 +104,10 @@ export default function Nutrition() {
         >
           <div className="text-center mb-12">
             <h3 className="font-display text-3xl md:text-4xl text-charcoal mb-3">
-              Недельное меню
+              {t.nutrition.weeklyMenuTitle}
             </h3>
             <p className="text-warm-gray text-lg">
-              Выберите день недели, чтобы посмотреть подробное меню
+              {t.nutrition.weeklyMenuSubtitle}
             </p>
           </div>
           <WeeklyMenu />

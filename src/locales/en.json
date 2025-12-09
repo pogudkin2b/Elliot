@@ -91,7 +91,15 @@
     "subtitle": "Delicious and healthy — like home",
     "description": "Menu is designed according to children's age-specific needs. We cook from fresh ingredients every day.",
     "menuUpdate": "Menu is updated weekly",
-    "downloadMenu": "Download sample menu (PDF)"
+    "downloadMenu": "Download sample menu (PDF)",
+    "mealsCount": "3 meals",
+    "mealNames": {
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "snack": "Snack"
+    },
+    "weeklyMenuTitle": "Weekly Menu",
+    "weeklyMenuSubtitle": "Select a day of the week to view the detailed menu"
   },
   "reviews": {
     "title": "Parent Reviews",
