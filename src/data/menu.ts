@@ -1,6 +1,62 @@
 export interface MenuItem {
   name: string;
   icon: string;
+  key?: string; // Translation key
+}
+
+// Mapping from Russian dish names to translation keys
+const dishNameToKey: Record<string, string> = {
+  'Овсяная каша': 'oatmeal',
+  'Манная каша': 'semolina',
+  'Рисовая каша': 'rice_porridge',
+  'Гречневая каша': 'buckwheat_porridge',
+  'Вермишелевая каша': 'vermicelli_porridge',
+  'Масло/Хлеб': 'butter_bread',
+  'Фруктовое пюре/Хлеб': 'fruit_puree_bread',
+  'Фруктовый чай': 'fruit_tea',
+  'Фрукт': 'fruit',
+  'Рисовый суп/Хлеб': 'rice_soup_bread',
+  'Морковный кекс': 'carrot_muffin',
+  'Яблочный кекс': 'apple_muffin',
+  'Куриная котлета': 'chicken_cutlet',
+  'Говяжья котлета': 'beef_cutlet',
+  'Гречневый гарнир/Хлеб': 'buckwheat_side_bread',
+  'Фруктовый сок': 'fruit_juice',
+  'Говяжья тефтеля': 'beef_meatball',
+  'Говяжьи тефтели': 'beef_meatballs',
+  'Овощной суп-пюре/Хлеб': 'vegetable_soup_puree_bread',
+  'Огуречные и морковные палочки': 'cucumber_carrot_sticks',
+  'Тушеная вермишель со сметаной': 'stewed_vermicelli_sour_cream',
+  'Борщ/Хлеб': 'borsch_bread',
+  'Отварная курица': 'boiled_chicken',
+  'Гарнир из булгура/Хлеб': 'bulgur_side_bread',
+  'Французский тост': 'french_toast',
+  'Творожное и сметанное суфле': 'cottage_cheese_sour_cream_souffle',
+  'Овощной суп/Хлеб': 'vegetable_soup_bread',
+  'Салат из брокколи': 'broccoli_salad',
+  'Макароны с сыром и мацони': 'pasta_cheese_matsoni',
+  'Суп-пюре из брокколи с овощами/Хлеб': 'broccoli_vegetable_soup_puree_bread',
+  'Хачапури': 'khachapuri',
+  'Отварная рыба': 'boiled_fish',
+  'Гарнир из булгура и моркови/Хлеб': 'bulgur_carrot_side_bread',
+  'Суп с капустой/Хлеб': 'cabbage_soup_bread',
+  'Говяжий суп-харчо/Хлеб': 'beef_kharcho_soup_bread',
+  'Овощной салат со сметаной': 'vegetable_salad_sour_cream',
+  'Жареное яйцо': 'fried_egg',
+  'Тушеная вермишель с гарниром': 'stewed_vermicelli_side',
+  'Чечевичный суп/Хлеб': 'lentil_soup_bread',
+  'Куриный бульон/Хлеб': 'chicken_broth_bread',
+  'Тушеная брокколи': 'stewed_broccoli',
+  'Макароны со сметаной': 'pasta_sour_cream',
+  'Гороховый суп/Хлеб': 'pea_soup_bread',
+  'Картофельное пюре': 'mashed_potatoes'
+};
+
+/**
+ * Get translation key for a dish name
+ */
+export function getDishKey(name: string): string {
+  return dishNameToKey[name] || name;
 }
 
 export interface MealTime {

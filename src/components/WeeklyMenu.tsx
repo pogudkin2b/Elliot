@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { menuData, getCurrentWeekNumber } from '@/data/menu';
+import { menuData, getCurrentWeekNumber, getDishKey } from '@/data/menu';
 import { useI18n } from '@/lib/i18n';
 
 const getMealConfig = (mealTitle: string) => ({
@@ -103,21 +103,7 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName, mealTitle }: Me
         </h3>
 
         {/* Список продуктов */}
-        <ul className="space-y-2">
-          {items.map((item, idx) => (
-            <motion.li
-              key={idx}
-              initial={{ opacity: 0, x: -10 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: delay * 0.15 + idx * 0.05 }}
-              className="flex items-center gap-3 text-charcoal"
-            >
-              <span className="w-2 h-2 rounded-full bg-terracotta flex-shrink-0"></span>
-              <span className="text-base md:text-lg font-medium">{item.name}</span>
-            </motion.li>
-          ))}
-        </ul>
+        <DishList items={items} delay={delay} />
       </div>
 
       {/* Правая часть — изображение или иллюстрация */}
@@ -157,6 +143,38 @@ const MealCard = ({ mealType, items, delay, weekNumber, dayName, mealTitle }: Me
         ) : null}
       </div>
     </motion.div>
+  );
+};
+
+interface DishListProps {
+  items: Array<{ name: string; icon: string }>;
+  delay: number;
+}
+
+const DishList = ({ items, delay }: DishListProps) => {
+  const { t } = useI18n();
+
+  return (
+    <ul className="space-y-2">
+      {items.map((item, idx) => {
+        const dishKey = getDishKey(item.name);
+        const translatedName = (t.weeklyMenu.dishes as Record<string, string>)[dishKey] || item.name;
+
+        return (
+          <motion.li
+            key={idx}
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: delay * 0.15 + idx * 0.05 }}
+            className="flex items-center gap-3 text-charcoal"
+          >
+            <span className="w-2 h-2 rounded-full bg-terracotta flex-shrink-0"></span>
+            <span className="text-base md:text-lg font-medium">{translatedName}</span>
+          </motion.li>
+        );
+      })}
+    </ul>
   );
 };
 
