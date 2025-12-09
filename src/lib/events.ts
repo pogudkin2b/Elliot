@@ -1,4 +1,6 @@
 import { fetchSanity } from './sanityClient'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { PortableTextBlock } from '@portabletext/types'
 
 export type EventSummary = {
   title: string
@@ -6,13 +8,13 @@ export type EventSummary = {
   date: string
   type: 'holiday' | 'event' | 'announcement'
   shortDescription: string
-  coverImage?: any
+  coverImage?: SanityImageSource
   pinned?: boolean
 }
 
 export type EventDetail = EventSummary & {
-  body?: any
-  gallery?: any[]
+  body?: PortableTextBlock[]
+  gallery?: SanityImageSource[]
 }
 
 /**

@@ -11,9 +11,12 @@ export const sanityClient = createClient({
 /**
  * Helper function to fetch data from Sanity with type safety
  */
-export async function fetchSanity<T = any>(
+export async function fetchSanity<T = unknown>(
   query: string,
   params?: QueryParams
 ): Promise<T> {
-  return sanityClient.fetch<T>(query, params)
+  if (params) {
+    return sanityClient.fetch<T>(query, params)
+  }
+  return sanityClient.fetch<T>(query)
 }
