@@ -92,12 +92,16 @@ export default function Reviews() {
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`h-3 rounded-full transition-all flex-shrink-0 ${
-                  index === activeIndex
-                    ? 'bg-terracotta w-8'
-                    : 'bg-light-gray hover:bg-warm-gray w-3'
-                }`}
-              />
+                className="w-8 h-3 flex items-center justify-center flex-shrink-0"
+              >
+                <span
+                  className={`h-3 rounded-full transition-all ${
+                    index === activeIndex
+                      ? 'bg-terracotta w-8'
+                      : 'bg-light-gray hover:bg-warm-gray w-3'
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
