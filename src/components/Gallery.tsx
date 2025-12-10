@@ -5,12 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n } from '@/lib/i18n';
 
 const images = [
-  { src: 'https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=600&h=400&fit=crop', alt: 'Children playing' },
-  { src: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=400&fit=crop', alt: 'Art class' },
-  { src: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=400&fit=crop', alt: 'Outdoor activities' },
-  { src: 'https://images.unsplash.com/photo-1576633587382-13ddf37b1fc1?w=600&h=400&fit=crop', alt: 'Learning together' },
-  { src: 'https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=600&h=400&fit=crop', alt: 'Creative play' },
-  { src: 'https://images.unsplash.com/photo-1595959183082-7b570b7e1dfa?w=600&h=400&fit=crop', alt: 'Music time' },
+  { src: '/images/moments/moments_1.webp', alt: 'Children playing' },
+  { src: '/images/moments/moments_2.webp', alt: 'Art class' },
+  { src: '/images/moments/moments_3.webp', alt: 'Outdoor activities' },
+  { src: '/images/moments/moments_4.webp', alt: 'Learning together' },
+  { src: '/images/moments/moments_5.webp', alt: 'Creative play' },
 ];
 
 export default function Gallery() {
@@ -175,7 +174,7 @@ export default function Gallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={images[selectedImage].src.replace('w=600&h=400', 'w=1400&h=1000')}
+                src={images[selectedImage].src}
                 alt={images[selectedImage].alt}
                 className="max-w-full max-h-[85vh] rounded-2xl object-contain"
               />
