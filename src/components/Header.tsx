@@ -4,6 +4,38 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useI18n, Locale, localeNames } from '@/lib/i18n';
 
+// Flag components
+const flags = {
+  ru: (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      <rect width="24" height="8" fill="#ffffff"/>
+      <rect y="8" width="24" height="8" fill="#0039A6"/>
+      <rect y="16" width="24" height="8" fill="#D52B1E"/>
+    </svg>
+  ),
+  en: (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      <rect width="24" height="24" fill="#B22234"/>
+      <rect width="24" height="1.85" fill="#ffffff"/>
+      <rect y="3.7" width="24" height="1.85" fill="#ffffff"/>
+      <rect y="7.4" width="24" height="1.85" fill="#ffffff"/>
+      <rect y="11.1" width="24" height="1.85" fill="#ffffff"/>
+      <rect y="14.8" width="24" height="1.85" fill="#ffffff"/>
+      <rect y="18.5" width="24" height="1.85" fill="#ffffff"/>
+      <rect y="22.15" width="24" height="1.85" fill="#ffffff"/>
+      <rect width="10" height="13" fill="#3C3B6E"/>
+    </svg>
+  ),
+  ka: (
+    <svg viewBox="0 0 24 24" className="w-full h-full">
+      <rect width="24" height="24" fill="#ffffff"/>
+      <rect x="10" width="4" height="24" fill="#FF0000"/>
+      <rect y="10" width="24" height="4" fill="#FF0000"/>
+      <path d="M 5 5 L 6.5 6.5 M 5 6.5 L 6.5 5 M 17.5 5 L 19 6.5 M 17.5 6.5 L 19 5 M 5 17.5 L 6.5 19 M 5 19 L 6.5 17.5 M 17.5 17.5 L 19 19 M 17.5 19 L 19 17.5" stroke="#FF0000" strokeWidth="0.8" strokeLinecap="round"/>
+    </svg>
+  ),
+};
+
 export default function Header() {
   const { locale, setLocale, t } = useI18n();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -104,8 +136,8 @@ export default function Header() {
                 onClick={() => setIsLangOpen(!isLangOpen)}
                 className="flex items-center gap-2 px-3 py-2 rounded-full border-2 border-light-gray hover:border-sage transition-colors text-charcoal font-medium text-sm"
               >
-                <span className="w-5 h-5 rounded-full bg-sage-light flex items-center justify-center text-[10px] font-bold text-sage-dark">
-                  {locale.toUpperCase().charAt(0)}
+                <span className="w-6 h-6 rounded-full overflow-hidden border border-light-gray flex-shrink-0">
+                  {flags[locale]}
                 </span>
                 {localeNames[locale]}
                 <motion.svg
@@ -140,10 +172,8 @@ export default function Header() {
                             : 'text-warm-gray hover:bg-sand hover:text-charcoal'
                         }`}
                       >
-                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold ${
-                          locale === loc ? 'bg-sage text-cream' : 'bg-light-gray text-warm-gray'
-                        }`}>
-                          {loc.toUpperCase().charAt(0)}
+                        <span className="w-7 h-7 rounded-full overflow-hidden border-2 border-light-gray flex-shrink-0">
+                          {flags[loc]}
                         </span>
                         {localeNames[loc]}
                       </button>
