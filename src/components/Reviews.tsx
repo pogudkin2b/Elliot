@@ -55,7 +55,7 @@ export default function Reviews() {
                 </svg>
               </div>
 
-              <div className="relative z-10">
+              <div className="relative z-10 pt-12">
                 <p className="text-xl md:text-2xl text-charcoal mb-8 leading-relaxed font-light">
                   &ldquo;{reviews[activeIndex].text}&rdquo;
                 </p>
@@ -92,7 +92,7 @@ export default function Reviews() {
               <button
                 key={index}
                 onClick={() => setActiveIndex(index)}
-                className={`h-3 rounded-full transition-all ${
+                className={`h-3 rounded-full transition-all flex-shrink-0 ${
                   index === activeIndex
                     ? 'bg-terracotta w-8'
                     : 'bg-light-gray hover:bg-warm-gray w-3'
