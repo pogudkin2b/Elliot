@@ -6,6 +6,12 @@ interface EventPageProps {
   params: Promise<{ slug: string }>
 }
 
+// Revalidate this page every 60 seconds
+export const revalidate = 60
+
+// Allow dynamic params for new events
+export const dynamicParams = true
+
 export async function generateStaticParams() {
   const slugs = await getAllEventSlugs()
   return slugs.map((slug) => ({ slug }))

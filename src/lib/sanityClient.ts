@@ -5,7 +5,7 @@ export const sanityClient = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true, // Use CDN for faster, cached responses in production
+  useCdn: process.env.NODE_ENV === 'production', // Use CDN only in production
 })
 
 /**
