@@ -28,29 +28,43 @@ export default function NewsSection({ events }: NewsSectionProps) {
   const getTypeBadgeColor = (type: string) => {
     switch (type) {
       case 'holiday':
-        return 'bg-pink-100 text-pink-700'
+        return 'bg-terracotta/20 text-terracotta-dark'
       case 'event':
-        return 'bg-blue-100 text-blue-700'
+        return 'bg-sage/20 text-sage-dark'
       case 'announcement':
-        return 'bg-amber-100 text-amber-700'
+        return 'bg-clay/20 text-clay'
       default:
-        return 'bg-gray-100 text-gray-700'
+        return 'bg-sand text-warm-gray'
     }
   }
 
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-pink-50/30" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
+    <section className="py-24 md:py-32 bg-sand relative overflow-hidden" ref={ref}>
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 right-10 w-64 h-64 bg-cream rounded-full opacity-50 blur-3xl" />
+        <div className="absolute bottom-20 left-10 w-80 h-80 bg-sage-lighter/30 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 relative">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.2 }}
+            className="inline-block text-terracotta font-medium tracking-widest uppercase text-sm mb-4"
+          >
+            Latest updates
+          </motion.span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl text-charcoal mb-6">
             {t.news.title}
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-warm-gray max-w-2xl mx-auto leading-relaxed">
             {t.news.subtitle}
           </p>
         </motion.div>
@@ -62,51 +76,61 @@ export default function NewsSection({ events }: NewsSectionProps) {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-lg text-gray-500">{t.news.noEvents}</p>
+            <p className="text-lg text-warm-gray">{t.news.noEvents}</p>
           </motion.div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
             {events.map((event, index) => (
               <motion.div
                 key={event.slug}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
                 <Link
                   href={`/news/${event.slug}`}
-                  className="group block h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  className="group block h-full bg-cream rounded-3xl overflow-hidden border border-sand hover:shadow-soft-lg transition-all duration-300"
                 >
                   {event.coverImage && (
-                    <div className="relative h-48 overflow-hidden bg-gray-100">
+                    <div className="relative h-48 overflow-hidden bg-sand">
                       <img
                         src={urlFor(event.coverImage).width(600).height(400).url()}
                         alt={event.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
+                      {/* Warm overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-terracotta/10 via-transparent to-sage/10" />
                     </div>
                   )}
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <time className="text-sm text-gray-500">
+                  <div className="p-6 md:p-8">
+                    <div className="flex items-center gap-3 mb-3 flex-wrap">
+                      <time className="text-sm text-warm-gray">
                         {formatDate(event.date)}
                       </time>
                       <span
-                        className={`text-xs font-medium px-2.5 py-1 rounded-full ${getTypeBadgeColor(
+                        className={`text-xs font-medium px-3 py-1.5 rounded-full ${getTypeBadgeColor(
                           event.type
                         )}`}
                       >
                         {t.news.types[event.type]}
                       </span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-pink-600 transition-colors">
+                    <h3 className="font-display text-xl md:text-2xl text-charcoal mb-3 leading-tight group-hover:text-terracotta transition-colors">
                       {event.title}
                     </h3>
-                    <p className="text-gray-600 line-clamp-3">
+                    <p className="text-warm-gray text-sm md:text-base leading-relaxed line-clamp-3">
                       {event.shortDescription}
                     </p>
-                    <div className="mt-4 text-pink-600 font-medium group-hover:translate-x-2 inline-block transition-transform">
-                      {t.news.readMore} →
+                    <div className="mt-4 inline-flex items-center gap-2 text-terracotta font-medium group-hover:gap-3 transition-all">
+                      {t.news.readMore}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
                     </div>
                   </div>
                 </Link>
@@ -123,9 +147,12 @@ export default function NewsSection({ events }: NewsSectionProps) {
         >
           <Link
             href="/news"
-            className="inline-flex items-center px-8 py-4 bg-pink-600 text-white font-medium rounded-full hover:bg-pink-700 transition-colors shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-charcoal hover:bg-charcoal/90 text-cream font-semibold rounded-full transition-all shadow-soft-lg hover:shadow-soft-xl"
           >
             {t.news.viewAll}
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </Link>
         </motion.div>
       </div>
