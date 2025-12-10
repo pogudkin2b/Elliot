@@ -8,13 +8,18 @@ import { urlFor } from '@/sanity/lib/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { PortableText } from '@portabletext/react'
+import {
+  pickLocalizedTitle,
+  pickLocalizedShortDescription,
+  pickLocalizedBody,
+} from '@/lib/i18nEvents'
 
 interface EventDetailClientProps {
   event: EventDetail
 }
 
 function EventDetailContent({ event }: EventDetailClientProps) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -76,10 +81,10 @@ function EventDetailContent({ event }: EventDetailClientProps) {
                 </span>
               </div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl text-charcoal mb-6 leading-tight">
-                {event.title}
+                {pickLocalizedTitle(event, locale)}
               </h1>
               <p className="text-xl text-warm-gray leading-relaxed">
-                {event.shortDescription}
+                {pickLocalizedShortDescription(event, locale)}
               </p>
             </div>
 
@@ -92,7 +97,7 @@ function EventDetailContent({ event }: EventDetailClientProps) {
               >
                 <img
                   src={urlFor(event.coverImage).width(1200).height(800).url()}
-                  alt={event.title}
+                  alt={pickLocalizedTitle(event, locale)}
                   className="w-full h-full object-cover"
                 />
                 {/* Warm overlay */}
@@ -100,7 +105,7 @@ function EventDetailContent({ event }: EventDetailClientProps) {
               </motion.div>
             )}
 
-            {event.body && (
+            {pickLocalizedBody(event, locale).length > 0 && (
               <motion.div
                 className="bg-cream rounded-3xl p-8 md:p-10 mb-12 border border-sand"
                 initial={{ opacity: 0 }}
@@ -108,7 +113,7 @@ function EventDetailContent({ event }: EventDetailClientProps) {
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <PortableText
-                  value={event.body}
+                  value={pickLocalizedBody(event, locale)}
                   components={{
                     block: {
                       normal: ({ children }) => (
@@ -171,7 +176,7 @@ function EventDetailContent({ event }: EventDetailClientProps) {
                     >
                       <img
                         src={urlFor(image).width(600).height(400).url()}
-                        alt={`${event.title} - Image ${index + 1}`}
+                        alt={`${pickLocalizedTitle(event, locale)} - Image ${index + 1}`}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       {/* Warm overlay */}

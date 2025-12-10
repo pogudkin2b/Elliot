@@ -7,13 +7,17 @@ import { EventSummary } from '@/lib/events'
 import { urlFor } from '@/sanity/lib/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import {
+  pickLocalizedTitle,
+  pickLocalizedShortDescription,
+} from '@/lib/i18nEvents'
 
 interface NewsPageClientProps {
   events: EventSummary[]
 }
 
 function NewsPageContent({ events }: NewsPageClientProps) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -107,7 +111,7 @@ function NewsPageContent({ events }: NewsPageClientProps) {
                       <div className="relative h-48 overflow-hidden bg-sand">
                         <img
                           src={urlFor(event.coverImage).width(600).height(400).url()}
-                          alt={event.title}
+                          alt={pickLocalizedTitle(event, locale)}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         {/* Warm overlay */}
@@ -128,10 +132,10 @@ function NewsPageContent({ events }: NewsPageClientProps) {
                         </span>
                       </div>
                       <h2 className="font-display text-xl md:text-2xl text-charcoal mb-3 leading-tight group-hover:text-terracotta transition-colors">
-                        {event.title}
+                        {pickLocalizedTitle(event, locale)}
                       </h2>
                       <p className="text-warm-gray text-sm md:text-base leading-relaxed line-clamp-3">
-                        {event.shortDescription}
+                        {pickLocalizedShortDescription(event, locale)}
                       </p>
                       <div className="mt-4 inline-flex items-center gap-2 text-terracotta font-medium group-hover:gap-3 transition-all">
                         {t.news.readMore}

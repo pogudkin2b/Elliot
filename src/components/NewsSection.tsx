@@ -6,13 +6,17 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { EventSummary } from '@/lib/events'
 import { urlFor } from '@/sanity/lib/image'
+import {
+  pickLocalizedTitle,
+  pickLocalizedShortDescription,
+} from '@/lib/i18nEvents'
 
 interface NewsSectionProps {
   events: EventSummary[]
 }
 
 export default function NewsSection({ events }: NewsSectionProps) {
-  const { t } = useI18n()
+  const { t, locale } = useI18n()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
@@ -100,7 +104,7 @@ export default function NewsSection({ events }: NewsSectionProps) {
                     <div className="relative h-48 overflow-hidden bg-sand">
                       <img
                         src={urlFor(event.coverImage).width(600).height(400).url()}
-                        alt={event.title}
+                        alt={pickLocalizedTitle(event, locale)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       {/* Warm overlay */}
@@ -121,10 +125,10 @@ export default function NewsSection({ events }: NewsSectionProps) {
                       </span>
                     </div>
                     <h3 className="font-display text-xl md:text-2xl text-charcoal mb-3 leading-tight group-hover:text-terracotta transition-colors">
-                      {event.title}
+                      {pickLocalizedTitle(event, locale)}
                     </h3>
                     <p className="text-warm-gray text-sm md:text-base leading-relaxed line-clamp-3">
-                      {event.shortDescription}
+                      {pickLocalizedShortDescription(event, locale)}
                     </p>
                     <div className="mt-4 inline-flex items-center gap-2 text-terracotta font-medium group-hover:gap-3 transition-all">
                       {t.news.readMore}
