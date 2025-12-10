@@ -33,7 +33,7 @@ export default function Nutrition() {
           >
             <div className="rounded-3xl overflow-hidden shadow-soft-lg">
               <img
-                src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=800&h=600&fit=crop"
+                src="/images/nutrition.webp"
                 alt="Healthy food"
                 className="w-full h-[400px] object-cover"
               />
