@@ -181,7 +181,7 @@ export default function Hero() {
                 {/* Image container */}
                 <div className="relative overflow-hidden blob-2 shadow-soft-lg">
                   <img
-                    src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&h=900&fit=crop&crop=faces"
+                    src="/images/heropic.webp"
                     alt="Children playing"
                     className="w-full h-[450px] md:h-[550px] object-cover"
                   />
