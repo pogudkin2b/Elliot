@@ -67,9 +67,14 @@ export default function Header() {
     if (isRoute) {
       window.location.href = href;
     } else {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+      // If we're not on the home page, navigate to home first
+      if (window.location.pathname !== '/') {
+        window.location.href = '/' + href;
+      } else {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     }
     setIsMenuOpen(false);
@@ -89,7 +94,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-18 md:h-22">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group">
+          <a href="/" className="flex items-center gap-3 group">
             <motion.div
               whileHover={{ rotate: 10, scale: 1.1 }}
               transition={{ type: 'spring', stiffness: 400 }}
@@ -184,8 +189,8 @@ export default function Header() {
             </div>
 
             {/* CTA Button - Desktop */}
-            <motion.a
-              href="#contacts"
+            <motion.button
+              onClick={() => handleNavClick('#contacts', false)}
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-terracotta hover:bg-terracotta-dark text-cream font-semibold text-sm rounded-full transition-colors shadow-soft"
@@ -194,7 +199,7 @@ export default function Header() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </motion.a>
+            </motion.button>
 
             {/* Mobile Menu Button */}
             <motion.button
@@ -237,15 +242,15 @@ export default function Header() {
                   {item.label}
                 </motion.button>
               ))}
-              <motion.a
-                href="#contacts"
+              <motion.button
+                onClick={() => handleNavClick('#contacts', false)}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: navItems.length * 0.05 }}
                 className="block w-full text-center py-4 mt-4 bg-terracotta text-cream font-semibold rounded-2xl"
               >
                 {t.hero.cta}
-              </motion.a>
+              </motion.button>
             </div>
           </motion.nav>
         )}
